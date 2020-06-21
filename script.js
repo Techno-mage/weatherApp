@@ -61,6 +61,7 @@ $(document).ready(function() {
         $("#today").append(card);
 
         // call follow-up api endpoints
+        getHourly(data.coord.lat, data.coord.lon);
         getForecast(searchValue);
         getUVIndex(data.coord.lat, data.coord.lon);
       }
@@ -130,7 +131,48 @@ $(document).ready(function() {
   }
 
   //The Group's plan. Add an hourly forecast
-  
+  function getHourly(lat, lon){
+    $.ajax({
+      type: "GET",
+      url: "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid=83446f1563efe3fbbfb5ad40dfcf9bfd&units=imperial",
+      dataType: "json",
+      success: function(data){
+        console.log(data);
+
+        $("#hourly").html("<h4 class=\"mt-3\">Hourly Forecast:</h4>").append("<div class=\"row\">");
+        for(var i = 1; i <= 5; i++){
+          console.log(data.hourly[i])
+
+          
+
+
+          //create card body.
+          var col = $("<div>").addClass("col-md-2");
+          var card = $("<div>").addClass("card bg-primary text-white");
+          var body = $("<div>").addClass("card-body p-2");
+
+          //print time
+          var time =$("<div>").text("In "+ i + " hour(s)");
+          //grab icon
+          var weather = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.hourly[i].weather[0].icon + ".png");
+          //grab tempreture
+          var temp = $("<div>").text("Temp: " + data.hourly[i].temp);
+          //append all variables onto a card
+          col.append(card.append(body.append(time, weather, temp)));
+          //append card to view
+          $("#hourly .row").append(col);
+        }
+        //display the hourly forcast for the next 5 hours. 
+
+
+
+      }
+      
+
+
+
+    });
+  }
 
 
   // get current history, if any
