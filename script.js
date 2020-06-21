@@ -139,6 +139,9 @@ $(document).ready(function() {
       success: function(data){
         console.log(data);
 
+        var hour = moment().startOf("hour");
+        console.log(hour)
+
         $("#hourly").html("<h4 class=\"mt-3\">Hourly Forecast:</h4>").append("<div class=\"row\">");
         for(var i = 1; i <= 5; i++){
           console.log(data.hourly[i])
@@ -152,7 +155,9 @@ $(document).ready(function() {
           var body = $("<div>").addClass("card-body p-2");
 
           //print time
-          var time =$("<div>").text("In "+ i + " hour(s)");
+          console.log(hour.add(1, "h"));
+          //var time =$("<div>").text("In "+ i + " hour(s)");
+          var time =$("<div>").text(hour.format("h a"));
           //grab icon
           var weather = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.hourly[i].weather[0].icon + ".png");
           //grab tempreture
