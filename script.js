@@ -130,16 +130,17 @@ $(document).ready(function() {
   }
 
   //The Group's plan. Add an hourly forecast
-
+  
 
 
   // get current history, if any
   var history = JSON.parse(window.localStorage.getItem("history")) || [];
 
+  // displays the last item in history
   if (history.length > 0) {
     searchWeather(history[history.length-1]);
   }
-
+  // creates a button for each item in history
   for (var i = 0; i < history.length; i++) {
     makeRow(history[i]);
   }
