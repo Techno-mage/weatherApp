@@ -6,4 +6,4 @@ This is a Weather app that displays the current, hourly, and 5 day forcast. When
 
 url: https://techno-mage.github.io/weatherApp/
 
-<img src= assets/Screenshot_Weather_Dashboard>
+<img src= "assets/Screenshot_Weather_Dashboard">
