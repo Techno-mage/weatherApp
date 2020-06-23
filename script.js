@@ -161,7 +161,7 @@ $(document).ready(function() {
           //grab icon
           var weather = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.hourly[i].weather[0].icon + ".png");
           //grab tempreture
-          var temp = $("<div>").text("Temp: " + data.hourly[i].temp);
+          var temp = $("<div>").text("Temp: " + data.hourly[i].temp +  " °F");
           //append all variables onto a card
           col.append(card.append(body.append(time, weather, temp)));
           //append card to view
